@@ -1,0 +1,22 @@
+<div class="banner">
+	<ul>
+		{volist name="ad" id="item"}
+		{if $item['cover_id']}
+		<li style="background:url({:get_cover($item['cover_id'],'path')}) center no-repeat;" title="{$item['title']}">
+			<a href="{:url($item['url'])}" target="_blank"></a>
+		</li>
+		{else/}
+		<li style="background:{$item['bgcolor']|default='#95FCBD'};" title="{$item['title']}">
+			<a href="{:url($item['url'])}" target="_blank"></a>
+		</li>
+		{/if}
+		{/volist}
+	</ul>
+</div>
+<script type="text/javascript">
+$(function() {
+    $('.banner').unslider({
+    	dots: true,               //  Display dot navigation
+    });
+});
+</script>

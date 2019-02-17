@@ -1,0 +1,32 @@
+<div class="boards" id="{$field}_sort">
+{volist name="option" id="vo"}
+	<div class="board panel panel-info">
+		<div class="panel-heading">{$vo['name']}</div>
+		<div class="panel-body">
+			<div class="board-list" data-group="{$key}">
+				{foreach name="vo['list']" item="item" key="k"}
+					{php}
+					$item['group'] = isset($item['group']) ? $item['group'] : '';
+					{/php}
+					{if (($i eq 1) or ($item['group'] eq $key)) and ($item['is_show'] eq 1)}
+						<div class="board-item">
+							<span data="{$item['id']}">{$item['title']} [{$item['name']}]</span>
+							<input type="hidden" name="{$field}[{$key}][]" value="{$item['id']}"/>
+						</div>
+					{/if}
+				{/foreach}
+			</div>
+		</div>
+	</div>
+{/volist}
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.form-group #{$field}_sort').boards({
+		drop: function(e){
+			var group = e.target.closest('.board').find('.board-list').attr('data-group');
+			e.element.find('input').attr('name','{$field}[' + group + '][]')
+		}
+	})
+})
+</script>

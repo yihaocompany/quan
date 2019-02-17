@@ -1,0 +1,213 @@
+{include file="admin@public/header" /}
+{block name="style"}{/block}
+<div id="theme-wrapper">
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-nav">
+					<span class="sr-only">菜单</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="{:url('Index/index')}" id="logo" class="navbar-brand">
+					<img src="__STATIC__/images/logo.png" alt="" class="normal-logo logo-white"/>
+				</a>
+				<ul class="nav navbar-nav pull-right visible-xs">
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="__STATIC__/images/samples/scarlet-159.png" alt=""/>
+							<span class="hidden-xs">{:session('user_auth.username')}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								<a href="{:url('admin/User/edit')}">
+									<i class="fa fa-user"></i>
+									修改资料
+								</a>
+							</li>
+							<li>
+								<a href="{:url('admin/User/editpwd')}">
+									<i class="fa fa-cog"></i>
+									修改密码
+								</a>
+							</li>
+							<li>
+								<a href="{:url('admin/index/logout')}">
+									<i class="fa fa-power-off"></i>
+									退出后台
+								</a>
+							</li>
+							<li>
+								<a href="{:config('WEB_SITE_URL')}" target="_blank">
+									<i class="fa fa-home"></i>
+									前台首页
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+				<ul class="nav navbar-nav pull-left">
+					<li>
+						<a class="btn" id="make-small-nav"> <i class="fa fa-bars"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="collapse navbar-collapse" id="header-nav">
+				<ul class="nav navbar-nav">
+					{volist name="__menu__['main']" id="item"}
+					<li class="{$item['style']}">
+					<a href="{$item['url']|url}">
+						<i class="fa fa-{$item['icon']|default='file'}"></i>
+						<span>{$item['title']}</span>
+					</a>
+					</li>
+					{/volist}
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown profile-dropdown hidden-sm hidden-xs">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="__STATIC__/images/samples/scarlet-159.png" alt=""/>
+							<span class="hidden-xs">{:session('user_auth.username')}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								<a href="{:url('admin/User/edit')}">
+									<i class="fa fa-user"></i>
+									修改资料
+								</a>
+							</li>
+							<li>
+								<a href="{:url('admin/User/editpwd')}">
+									<i class="fa fa-cog"></i>
+									修改密码
+								</a>
+							</li>
+							<li>
+								<a href="{:url('admin/index/logout')}">
+									<i class="fa fa-power-off"></i>
+									退出后台
+								</a>
+							</li>
+							<li>
+								<a href="{:config('WEB_SITE_URL')}" target="_blank">
+									<i class="fa fa-home"></i>
+									前台首页
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="visible-lg">
+						<a href="#" class="btn" onclick="helpIntro();">
+							<i class="fa fa-question-circle"></i>
+							操作指南
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<div id="page-wrapper" class="container nav-small">
+		<div class="row">
+			<div id="nav-col">
+				<section id="col-left" class="col-left-nano">
+					<div id="col-left-inner" class="col-left-nano-content">
+						<div id="sidebar-nav">
+							<ul class="nav nav-pills nav-stacked">
+								{volist name="__menu__['child']" id="nav"}
+								<li class="nav-header hidden-sm hidden-xs">{$key}</li>
+								{volist name="nav" id="item"}
+								{if isset($item['_child'])}
+								<li class="{$item['style']}">
+									<a href="#" class="dropdown-toggle">
+										<i class="fa fa-{$item['icon']|default='file'}"></i>
+										<span>{$item['title']}</span>
+										<i class="fa fa-angle-right drop-icon"></i>
+									</a>
+									<ul class="submenu">
+										{volist name="item['_child']" id="vo" key="k"}
+										<li class="{$vo['style']}">
+											<a href="{$vo['url']|url}">
+												<i class="fa fa-{$vo['icon']|default='file'}"></i>
+												<span>{$vo['title']}</span>
+											</a>
+										</li>
+										{/volist}
+									</ul>
+								</li>
+								{else/}
+								<li class="{$item['style']}">
+									<a href="{$item['url']|url}">
+										<i class="fa fa-{$item['icon']|default='file'}"></i>
+										<span>{$item['title']}</span>
+									</a>
+								</li>
+								{/if}
+								{/volist}
+								{/volist}
+								{if isset($extend_menu)}
+								{volist name="extend_menu" id="sub"}
+									{if is_string($key)}<li class="nav-header hidden-sm hidden-xs">{$key}</li>{/if}
+									{volist name="sub" id="item"}
+									<li class="{$item['style']}">
+										<a href="{$item['url']|url}">
+											<i class="fa fa-{$item['icon']|default='file'}"></i>
+											<span>{$item['title']}</span>
+										</a>
+									</li>
+									{/volist}
+								{/volist}
+								{/if}
+							</ul>
+						</div>
+					</div>
+				</section>
+				<div id="nav-col-submenu"></div>
+			</div>
+
+			<div id="content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="content-header" class="clearfix">
+									<div class="pull-left">
+										<ol class="breadcrumb">
+											<li>
+												<a href="{:url('Admin/Index/index')}">后台首页</a>
+											</li>
+											<li class="active">
+												{if $meta_title}
+												<span>{$meta_title}</span>
+												{else/}
+												<span>{:lang(request()->controller().'_'.request()->action())}</span>
+												{/if}
+											</li>
+										</ol>
+									</div>
+									<div class="pull-right hidden-xs">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								{block name="body"}{/block}
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer id="footer-bar" class="row">
+					<p id="footer-copyright" class="col-xs-12">Powered by <a href="http://www.diao.info" target="_blank">Yihao,Inc.</a></p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="admin@public/tool" /}
+{include file="admin@public/footer" /}
+{block name="script"}{/block}

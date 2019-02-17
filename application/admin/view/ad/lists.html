@@ -1,0 +1,50 @@
+{extend name="public/base"/}
+{block name="style"}
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/libs/bootstrap-editable.css">
+{/block}
+{block name="body"}
+<div class="main-box no-header clearfix">
+	<header class="main-box-header clearfix">
+		<div class="pull-left">
+			<h2>{$meta_title}</h2>
+		</div>
+		<div class="pull-right">
+			<a class="btn btn-success" href="{:url('addad?id='.$id)}"><i class="fa fa-plus-circle fa-lg"></i> 新 增</a>
+			<a class="btn btn-primary" href="{:url('index')}"><i class="fa fa-list fa-lg"></i> 广告位</a>
+		</div>
+	</header>
+	<div class="main-box-body clearfix">
+		<!-- 表格列表 -->
+		<div class="table-responsive clearfix">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th width="30"><input class="checkbox check-all" type="checkbox"></th>
+						<th width="60">ID</th>
+						<th width="280">标题</th>
+						<th width="280">创建时间</th>
+						<th width="280">更新时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="list" id="item"}
+					<tr>
+						<td><input class="ids row-selected" type="checkbox" name="id[]" value="{$item.id}"></td>
+						<td>{$item['id']}</td>
+						<td>{$item['title']}</td>
+						<td>{$item['create_time']|date='Y-m-d H:i',###}</td>
+						<td>{$item['update_time']|date='Y-m-d H:i',###}</td>
+						<td>
+							<a href="{:url('editad?id='.$item['id'])}">编辑</a>
+							<a href="{:url('delad?id='.$item['id'])}" class="confirm ajax-get">删除</a>
+						</td>
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
+		</div>
+		<!-- /表格列表 -->
+	</div>
+</div>
+{/block}

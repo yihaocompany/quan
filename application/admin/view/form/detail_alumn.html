@@ -1,0 +1,62 @@
+{extend name="public/base"/}
+{block name="body"}
+<div class="main-box clearfix">
+	<header class="main-box-header clearfix">
+		<div class="pull-left">
+			<h2>{$meta_title}</h2>
+		</div>
+		<div class="pull-right">
+		</div>
+	</header>
+	<div class="main-box-body clearfix">
+		<div class="table-responsive clearfix">
+			<table class="table table-hover table-bordered">
+				<tr>
+					<th width="120" style="text-align: right;">姓名</th>
+					<td>{$info['name']}</td>
+					<th width="120" style="text-align: right;">性别</th>
+					<td>{if $info['sex'] == 0}保密{elseif $info['sex'] == 1}男{elseif $info['sex'] == 2}女{/if}</td>
+					<th width="120" style="text-align: right;">出生年月</th>
+					<td>{$info['birthday']|date='Y-m-d',###}</td>
+				</tr>
+				<tr>
+					<th width="120" style="text-align: right;">从事行业</th>
+					<td>{$info['industry']}</td>
+					<th width="120" style="text-align: right;">所在单位</th>
+					<td colspan="3">{$info['company']}</td>
+				</tr>
+				<tr>
+					<th width="120" style="text-align: right;">单位职务</th>
+					<td>{$info['duties']}</td>
+					<th width="120" style="text-align: right;">入学年份</th>
+					<td>{$info['en_year']}</td>
+					<th width="120" style="text-align: right;">所学专业</th>
+					<td>{$info['major']}</td>
+				</tr>
+				<tr>
+					<th width="120" style="text-align: right;">联系电话</th>
+					<td>{$info['mobile']}</td>
+					<th width="120" style="text-align: right;">QQ</th>
+					<td>{$info['qq']}</td>
+					<th width="120" style="text-align: right;">微信</th>
+					<td>{$info['wechat']}</td>
+				</tr>
+				<tr>
+					<th width="120" style="text-align: right;">个人简历</th>
+					<td colspan="5">
+						{$info['profile']}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						说明：个人简历中，您可以添加任何您愿意提供的信息，例如您可以为校友提供何种帮助，有何特长，获得的主要荣誉，是否参加其他社团组织等等。
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+
+{/block}

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top sticky-navigation">
+    <a class="navbar-brand font-weight-bold" href="#">{$Webname}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topMenu">
+        <ul class="navbar-nav ml-auto">
+          <!--  <li class="nav-item active">
+                <a class="nav-link page-scroll" href="#brand-colors">Home <span class="sr-only">(current)</span></a>
+            </li>
+-->
+            {notempty name="topmenu"}
+            {volist name="topmenu" id="menu"}
+            <li class="nav-item active">
+                <a class="nav-link page-scroll" href="{$menu.url}" {if $menu['target'] !=0} target='_blank'{/if} >{$menu.title}</a>
+            </li>
+            {/volist}
+            {else/}
+            {/notempty}
+<!--
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="theme-components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Components
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="theme-components">
+                    <a class="dropdown-item page-scroll" href="#brand-colors">Brand colors</a>
+                    <a class="dropdown-item page-scroll" href="#links">Links</a>
+                    <a class="dropdown-item page-scroll" href="#grid">Grid</a>
+                    <a class="dropdown-item page-scroll" href="#fonts">Fonts</a>
+                    <a class="dropdown-item page-scroll" href="#buttons">Buttons</a>
+                    <a class="dropdown-item page-scroll" href="#forms">Forms</a>
+                    <a class="dropdown-item page-scroll" href="#dropdown">Dropdown</a>
+                    <a class="dropdown-item page-scroll" href="#navs">Navs</a>
+                    <a class="dropdown-item page-scroll" href="#navbar">Navbar</a>
+                    <a class="dropdown-item page-scroll" href="#tables">Tables</a>
+                    <a class="dropdown-item page-scroll" href="#pagination">Pagination</a>
+                    <a class="dropdown-item page-scroll" href="#jumbotron">Jumbotron</a>
+                    <a class="dropdown-item page-scroll" href="#cards">Cards</a>
+                    <a class="dropdown-item page-scroll" href="#tooltip">Tooltip</a>
+                    <a class="dropdown-item page-scroll" href="#popovers">Popovers</a>
+                    <a class="dropdown-item page-scroll" href="#badges">Badges</a>
+                    <a class="dropdown-item page-scroll" href="#modals">Modals</a>
+                    <a class="dropdown-item page-scroll" href="#alerts">Alerts</a>
+                    <a class="dropdown-item page-scroll" href="#progress-bars">Progress bars</a>
+                    <a class="dropdown-item page-scroll" href="#list-group">List group</a>
+                    <a class="dropdown-item page-scroll" href="#image-thumbnails">Image thumbnails</a>
+                    <a class="dropdown-item page-scroll" href="#figures">Figures</a>
+                    <a class="dropdown-item page-scroll" href="#breadcrumbs">Breadcrumbs</a>
+                    <a class="dropdown-item page-scroll" href="#carousel">Carousel</a>
+                    <a class="dropdown-item page-scroll" href="#close">Close icon</a>
+                    <a class="dropdown-item page-scroll" href="#code">Code</a>
+                </div>
+            </li>-->
+        </ul>
+<!--        <form class="form-inline ml-md-3">
+            <a href="#" class="btn btn-light">Download</a>
+        </form>-->
+    </div>
+</nav>

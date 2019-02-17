@@ -1,0 +1,7 @@
+.idea
+composer.lock
+*.log
+framework
+application/database.php
+application/install.lock
+application/upload.lock

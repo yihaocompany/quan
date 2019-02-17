@@ -1,0 +1,89 @@
+{extend name="public/base"/}
+
+{block name="body"}
+<div class="main-box clearfix">
+	<header class="main-box-header clearfix">
+		<div class="pull-left">
+			<h2>{$meta_title}</h2>
+		</div>
+		<div class="pull-right">
+			<a class="btn btn-success" href="{:url('Model/add')}">新 增</a>
+			<button class="btn ajax-post" target-form="ids" url="{:url('Model/status',array('status'=>0))}">禁 用</button>
+		</div>
+	</header>
+	<div class="main-box-body clearfix">
+		<div class="table-responsive clearfix">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="row-selected row-selected">
+							<input class="check-all" type="checkbox"/>
+						</th>
+						<th class="">编号</th>
+						<th class="">标识</th>
+						<th class="">名称</th>
+						<th class="">创建时间</th>
+						<th class="">状态</th>
+						<th class="">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{notempty name="list"}
+					{volist name="list" id="item"}
+					<tr>
+						<td>
+							<input class="ids" type="checkbox" name="ids[]" value="{$item['id']}" />
+						</td>
+						<td>{$item['id']}</td>
+						<td><i class="fa fa-{$item['icon']}"></i> {$item['name']}</td>
+						<td>
+							<a data-id="{$item.id}" href="{:url('model/edit?id='.$item['id'])}">{$item.title}</a>
+						</td>
+						<td>
+							<span>{$item.create_time|time_format}</span>
+						</td>
+						<td>
+							{if $item['status']}
+							<span class="label label-primary">{$item['status_text']}</span>
+							{else/}
+							<span class="label label-danger">{$item['status_text']}</span>
+							{/if}
+						</td>
+						<td>
+							<a href="{:url('admin/attribute/index?model_id='.$item['id'])}">字段</a>
+							<a href="{:url('model/status?id='.$item['id'].'&status='.abs(1-$item['status']))}" class="ajax-get">{$item['status']|show_status_op}</a>
+							<a href="{:url('model/edit?id='.$item['id'])}">编辑</a>
+							<a href="{:url('model/del?id='.$item['id'])}" class="confirm ajax-get">删除</a>
+							<a href="{:url('admin/content/index?model_id='.$item['id'])}">数据</a>
+						</td>
+					</tr>
+					{/volist}
+					{else/}
+					<td colspan="7" class="text-center">aOh! 暂时还没有创建模型!</td>
+					{/notempty}
+				</tbody>
+			</table>
+
+		</div>
+		{$page}
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(function(){
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+		var status = $('select[name=status]').val();
+		var search = $('input[name=search]').val();
+		if(status != ''){
+			url += '/status/' + status;
+		}
+		if(search != ''){
+			url += '/search/' + search;
+		}
+		window.location.href = url;
+	});
+})
+</script>
+{/block}

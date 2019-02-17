@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<title>YihaoCMS网站管理系统后台</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/libs/font-awesome.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/common.css"/>
+<!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'> -->
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/admin/style.css"/>
+<script type="text/javascript" src="__STATIC__/plugs/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui/layui.all.js"></script>
+<script type="text/javascript">
+var BASE_URL = "{:config('base_url')}"; //根目录地址
+$(function(){
+	var height = $(window).height();
+	if ($('#content-wrapper').height() < height) {
+		$('#content-wrapper').height($(window).height()-100);
+	}
+})
+</script>
+<!--[if lt IE 9]>
+<script src="__STATIC__/js/html5shiv.js"></script>
+<script src="__STATIC__/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>

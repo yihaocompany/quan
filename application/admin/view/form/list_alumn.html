@@ -1,0 +1,62 @@
+{extend name="public/base"/}
+{block name="body"}
+<div class="main-box clearfix">
+	<header class="main-box-header clearfix">
+		<div class="pull-left">
+			<h2>{$meta_title}</h2>
+		</div>
+		<div class="pull-right">
+			<a class="btn btn-primary" href="{:url('admin/form/outxls?form_id='.$form_id)}" target="_blank">导出</a>
+		</div>
+	</header>
+	<div class="main-box-body clearfix">
+		<div class="table-responsive clearfix">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th><input class="checkbox check-all" type="checkbox"></th>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>生日</th>
+						<th>从事行业</th>
+						<th>所在单位</th>
+						<th>职务</th>
+						<th>入学年份</th>
+						<th>所学专业</th>
+						<th>电话</th>
+						<th>QQ</th>
+						<th>微信</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="list" id="item"}
+					<tr>
+						<td><input class="ids row-selected" type="checkbox" name="id[]" value="{$item['id']}"></td>
+						<td>{$item['name']}</td>
+						<td>{if $item['sex'] == 0}保密{elseif $item['sex'] == 1}男{elseif $item['sex'] == 2}女{/if}</td>
+						<td>{$item['birthday']|date='Y-m-d',###}</td>
+						<td>{$item['industry']}</td>
+						<td>{$item['company']}</td>
+						<td>{$item['duties']}</td>
+						<td>{$item['en_year']}</td>
+						<td>{$item['major']}</td>
+						<td>{$item['mobile']}</td>
+						<td>{$item['qq']}</td>
+						<td>{$item['wechat']}</td>
+						<td>
+							<a href="{:url('detail',array('id'=>$item['id'], 'form_id'=>$form_id))}">详情</a>
+							<a href="{:url('deldata',array('id'=>$item['id'], 'form_id'=>$form_id))}" class="confirm ajax-get">删除</a>
+						</td>
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
+			{$page}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+
+{/block}

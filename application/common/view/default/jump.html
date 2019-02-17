@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>信息提示</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugs/layer/layer.js"></script>
+<style type="text/css">
+body,html{font-family: "微软雅黑","Microsoft YaHei";}
+</style>
+<script type="text/javascript">
+$(function(){
+	layer.confirm('{$msg|strip_tags}', {
+		closeBtn : 0
+		,skin: 'layui-layer-lan' //样式类名
+		,btn: ['返回首页','返回上一页'] //按钮
+	}, function(){
+		window.location = '/';
+	}, function(){
+		history.go(-1);
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>
