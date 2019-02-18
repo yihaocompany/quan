@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | YihaoCMS [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.tensent.cn All rights reserved.
+// | Copyright (c) 2013 http://diao.info All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: molong <molong@tensent.cn> <http://www.tensent.cn>
+// | Author: molong <molong@tensent.cn> <http://diao.info>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
@@ -43,6 +43,8 @@ class Domain extends Admin {
         $webconfig = model('WebConfig');
 		if ($this->request->isPost()) {
 			$data = input('post.');
+			$data['create_at']=strtotime('now');
+            $data['update_at']=strtotime('now');
 			if ($data) {
 				unset($data['id']);
 				$result = $webconfig->save($data);
@@ -79,10 +81,12 @@ class Domain extends Admin {
 		$id   = input('id', '', 'trim,intval');
 		if ($this->request->isPost()) {
 			$data = input('post.');
+
 			if ($data) {
+			    $data['update_at']=strtotime('now');
 				$result = $webconfig->save($data, array('id' => $data['id']));
 				if ($result) {
-					return $this->success("修改成功！", url('Link/index'));
+					return $this->success("修改成功！", url('Domain/index'));
 				} else {
 					return $this->error("修改失败！");
 				}

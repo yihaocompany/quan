@@ -19,6 +19,10 @@ class Base extends Controller{
 			cache('db_config_data', $config);
 		}
 		config($config);
+
+
+
+
 	}
 
 	public function execute($mc = null, $op = '', $ac = null) {

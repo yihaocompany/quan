@@ -10,6 +10,7 @@ class Front extends Base{
 	}
 
 	public function setThemes(){
+	    //Cache::set( $_SERVER['SERVER_NAME'],null);
 
             if(Cache::get( $_SERVER['SERVER_NAME'])){
                 $onerow        =Cache::get( $_SERVER['SERVER_NAME']);
@@ -20,11 +21,21 @@ class Front extends Base{
                     'Webname'  => $onerow['webname'],
                     'Email' =>$onerow['email'],
                     'Phone' =>$onerow['phone'],
+                    'Logo' =>$onerow['logo'],
                     'Address' =>$onerow['address']
                 ]);
 
             }else{
+
                 $onerow = db('web_config')->where('domain', $_SERVER['SERVER_NAME'])->find();
+                if(isset($onerow['logo'])){
+                    $picrow=db('picture')->where('id',$onerow['logo'])->find();
+                    if('$picrow'){
+                        $onerow['logo']=$picrow['path'];
+                    }else{
+                        $onerow['logo']="";
+                    }
+                }
                 Cache::set( $_SERVER['SERVER_NAME'],$onerow);
                 $onerow=Cache::get( $_SERVER['SERVER_NAME']);
                 $themes['pc']     = config('pc_themes') ? config('pc_themes') : 'default';

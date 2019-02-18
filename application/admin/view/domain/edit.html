@@ -3,7 +3,7 @@
 <div class="main-box clearfix">
     <header class="main-box-header clearfix">
         <div class="pull-left">
-            <h2>{:isset($info['id'])?'编辑':'新增'}后台菜单</h2>
+            <h2>{:isset($info['id'])?'编辑':'新增'}网站（主要域名）</h2>
         </div>
         <div class="pull-right"></div>
     </header>
@@ -41,7 +41,7 @@
 
 
             <div class="form-group">
-                <label class="col-lg-2 control-label">分类图标</label>
+                <label class="col-lg-2 control-label">网站logo</label>
                 <div class="col-lg-8">
                     {:widget('common/Form/show',array(array('name'=>'logo','type'=>'image'),$info))}
                 </div>
@@ -57,13 +57,20 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">电话</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="phone" value="{$info.phone|default=''}" style="width: 60%;">
 
+                    <span class="help-block">（显示在网站底部）</span>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">标题</label>
                 <div class="col-lg-10">
                     <input type="text" class="form-control" name="title" value="{$info.title|default=''}" style="width: 60%;">
 
-                    <span class="help-block">（优化用 标题中要体现关键字）</span>
+                    <span class="help-block">（优化用 标题中体现关键字）</span>
                 </div>
             </div>
             <div class="form-group">
@@ -76,9 +83,7 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">描述</label>
                 <div class="col-lg-10">
-
                     <textarea class="form-control" name="description">{$info.description|default=''}</textarea>
-
                     <span class="help-block">（优化用 不要超过300汉字）</span>
                 </div>
             </div>
@@ -94,10 +99,8 @@
     </div>
 </div>
 {/block}
-
 {block name="script"}
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/plugs/webuploader/webuploader.css">
 <script type="text/javascript" src="__PUBLIC__/plugs/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/plugs/webuploader/webuploader.custom.js"></script>
-
 {/block}

@@ -3,7 +3,7 @@
  * @file  webuploader.custom.js
  * @author molong <molong@tensent.cn>
  * @time  2016年1月12日18:04:09
- * @Copyright (c) 2007-2014 http://www.tensent.cn All rights reserved.
+ * @Copyright (c) 2007-2014 http://diao.info All rights reserved.
  */
 
 

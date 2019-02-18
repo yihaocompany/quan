@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | YihaoCMS [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.tensent.cn All rights reserved.
+// | Copyright (c) 2013 http://diao.info All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: colin <colin@tensent.cn> <http://www.tensent.cn>
+// | Author: colin <colin@tensent.cn> <http://diao.info>
 // +----------------------------------------------------------------------
 namespace com;
 use think\Db;
