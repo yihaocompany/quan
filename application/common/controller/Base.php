@@ -12,6 +12,7 @@ class Base extends Controller{
 		if (!is_file(APP_PATH . 'database.php') || !is_file(APP_PATH . 'install.lock')) {
 			return $this->redirect('install/index/index');
 		}
+
 		/* 读取数据库中的配置 */
 		$config = cache('db_config_data');
 		if (!$config) {
@@ -19,10 +20,6 @@ class Base extends Controller{
 			cache('db_config_data', $config);
 		}
 		config($config);
-
-
-
-
 	}
 
 	public function execute($mc = null, $op = '', $ac = null) {

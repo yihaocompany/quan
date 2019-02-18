@@ -221,6 +221,9 @@ class Config extends Admin {
 	 */
 	public function themes() {
 		$list = $this->model->getThemesList();
+
+
+
 		$pc = config('pc_themes');
 		$mobile = config('mobile_themes');
 		$data = array(
@@ -229,7 +232,7 @@ class Config extends Admin {
 			'list'   => $list,
 		);
 
-		$this->assign($data);
+        $this->assign($data);
 		$this->setMeta('主题设置');
 		return $this->fetch();
 	}

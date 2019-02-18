@@ -10,7 +10,7 @@ class Front extends Base{
 	}
 
 	public function setThemes(){
-	    //Cache::set( $_SERVER['SERVER_NAME'],null);
+
 
             if(Cache::get( $_SERVER['SERVER_NAME'])){
                 $onerow        =Cache::get( $_SERVER['SERVER_NAME']);
