@@ -223,7 +223,7 @@ class Menu extends Admin {
 
 	/**
 	 * @title 菜单排序
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function sort() {
 		if ($this->request->isGet()) {

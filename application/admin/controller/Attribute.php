@@ -47,7 +47,7 @@ class Attribute extends Admin {
 
 	/**
 	 * @title 字段列表
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function index($model_id = null) {
 		if (!$model_id) {
@@ -69,7 +69,7 @@ class Attribute extends Admin {
 
 	/**
 	 * @title 创建字段
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add($model_id = '') {
 		if ($this->request->isPost()) {
@@ -92,7 +92,7 @@ class Attribute extends Admin {
 
 	/**
 	 * @title 编辑字段
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function edit($id = '', $model_id = '') {
 		if ($this->request->isPost()) {
@@ -117,7 +117,7 @@ class Attribute extends Admin {
 	/**
 	 * @title 删除字段
 	 * @var delattr 是否删除字段表里的字段
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del(\think\Request $request) {
 		$id = $request->param('id');

@@ -17,7 +17,7 @@ class User extends Admin {
 
 	/**
 	 * @title 用户列表
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function index() {
 		$param = $this->request->param();
@@ -72,7 +72,7 @@ class User extends Admin {
 
 	/**
 	 * @title 修改用户
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function edit() {
 		$model = model('Member');
@@ -101,7 +101,7 @@ class User extends Admin {
 
 	/**
 	 * @title 删除用户
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del($id) {
 		$uid = array('IN', is_array($id) ? implode(',', $id) : $id);
@@ -114,7 +114,7 @@ class User extends Admin {
 
 	/**
 	 * @title 用户授权
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function auth() {
 		$access = model('AuthGroupAccess');
@@ -162,7 +162,7 @@ class User extends Admin {
 	 * @var uid 针对状态和删除启用
 	 * @var pass 是查询password
 	 * @var errormasg 错误提示
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	private function getUserinfo($uid = null, $pass = null, $errormsg = null) {
 		$user = model('Member');
@@ -183,7 +183,7 @@ class User extends Admin {
 
 	/**
 	 * @title 修改昵称
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function submitNickname() {
 
@@ -225,7 +225,7 @@ class User extends Admin {
 
 	/**
 	 * @title 修改密码初始化
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function editpwd() {
 		if ($this->request->isPost()) {

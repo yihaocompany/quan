@@ -22,7 +22,7 @@ class Config extends Admin {
 
 	/**
 	 * @title 配置管理
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function index() {
 		$group = input('group', 0, 'trim');
@@ -83,7 +83,7 @@ class Config extends Admin {
 
 	/**
 	 * @title 新增配置
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add() {
 		if ($this->request->isPost()) {
@@ -111,7 +111,7 @@ class Config extends Admin {
 
 	/**
 	 * @title 编辑配置
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function edit($id = 0) {
 		if ($this->request->isPost()) {
@@ -145,7 +145,7 @@ class Config extends Admin {
 	}
 	/**
 	 * @title 批量保存配置
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function save($config) {
 		if ($config && is_array($config)) {
@@ -161,7 +161,7 @@ class Config extends Admin {
 
 	/**
 	 * @title 删除配置
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del() {
 		$id = array_unique((array) input('id', 0));
@@ -183,7 +183,7 @@ class Config extends Admin {
 
 	/**
 	 * @title 配置排序
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function sort() {
 		if ($this->request->isGet()) {

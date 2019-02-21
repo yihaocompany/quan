@@ -264,7 +264,7 @@ function show_msg($msg, $class = 'primary'){
 
 /**
  * 生成系统AUTH_KEY
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function build_auth_key(){
 	$chars  = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';

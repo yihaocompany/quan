@@ -4,14 +4,14 @@
 // +----------------------------------------------------------------------
 // | Copyright (c) 2013 http://diao.info All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: colin <colin@tensent.cn> <http://diao.info>
+// | Author: wanghaibin <574574@qq.com> <http://diao.info>
 // +----------------------------------------------------------------------
 namespace com;
 use think\Db;
 
 /**
  * 数据库管理类
- * @author colin <colin@tensent.cn>
+ * @author wanghaibin <574574@qq.com>
  */
 class Datatable {
 
@@ -44,7 +44,7 @@ class Datatable {
 
 	/**
 	 * 初始化数据库信息
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function __construct() {
 		//创建DB对象
@@ -80,7 +80,7 @@ class Datatable {
 	 * 快速创建ID字段
 	 * @var length 字段的长度
 	 * @var comment 字段的描述
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function generateField($key = '', $type = '', $length = 11, $default = '', $comment = '主键', $is_auto_increment = false) {
 		if ($key && $type) {
@@ -99,7 +99,7 @@ class Datatable {
 	 * @var $table 追加字段的表名
 	 * @var $attr 属性列表
 	 * @var $is_more 是否为多条同时插入
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function columField($table, $attr = array()) {
 		$field_attr['table'] = $table ? $this->getTablename($table, true) : $this->table;
@@ -132,7 +132,7 @@ class Datatable {
 	 * 删除字段
 	 * @var $table 追加字段的表名
 	 * @var $field 字段名
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function delField($table, $field) {
 		$table     = $table ? $this->getTablename($table, true) : $this->table;
@@ -143,7 +143,7 @@ class Datatable {
 	/**
 	 * 删除数据表
 	 * @var $table 追加字段的表名
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function delTable($table) {
 		$table     = $table ? $this->getTablename($table, true) : $this->table;
@@ -156,7 +156,7 @@ class Datatable {
 	 * @var $engine_type 数据库引擎
 	 * @var $comment 表注释
 	 * @var $charset 数据库编码
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function endTable($comment, $engine_type = null, $charset = null) {
 		if (null != $charset) {
@@ -173,7 +173,7 @@ class Datatable {
 	/**
 	 * 创建动作
 	 * @return int 0
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function create() {
 		$res = Db::execute($this->sql);
@@ -183,7 +183,7 @@ class Datatable {
 	/**
 	 * create的别名
 	 * @return int 0
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function query() {
 		return $this->create();
@@ -191,7 +191,7 @@ class Datatable {
 
 	/**
 	 * 获取最后生成的sql语句
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function getLastSql() {
 		return $this->sql;
@@ -201,7 +201,7 @@ class Datatable {
 	 * 获取指定的表名
 	 * @var $table 要获取名字的表名
 	 * @var $prefix 获取表前缀？ 默认为不获取 false
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function getTablename($table, $prefix = false) {
 		if (false == $prefix) {
@@ -215,7 +215,7 @@ class Datatable {
 	/**
 	 * 获取指定表名的所有字段及详细信息
 	 * @var $table 要获取名字的表名 可以为sent_tengsu_photo、tengsu_photo、photo
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function getFields($table) {
 		if (false == $table) {
@@ -244,7 +244,7 @@ class Datatable {
 	/**
 	 * 确认表是否存在
 	 * @var $table 表名 可以为sent_tengsu_photo、tengsu_photo、photo
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 * @return boolen
 	 */
 	public function CheckTable($table) {
@@ -258,7 +258,7 @@ class Datatable {
 	 * 确认字段是否存在
 	 * @var $table 表名 可以为sent_tengsu_photo、tengsu_photo、photo
 	 * @var $field 字段名 要检查的字段名
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 * @return boolen
 	 */
 	public function CheckField($table, $field) {

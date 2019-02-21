@@ -18,7 +18,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 用户行为列表
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function index() {
 		$map = array('status' => array('gt', -1));
@@ -42,7 +42,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 新建用户行为
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add() {
 		$model = model('Action');
@@ -67,7 +67,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 编辑用户行为
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function edit($id = null) {
 		$model = model('Action');
@@ -97,7 +97,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 删除用户行为
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del() {
 		$id = $this->getArrayParam('id');
@@ -116,7 +116,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 修改用户行为状态
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function setstatus() {
 		$id = $this->getArrayParam('id');
@@ -137,7 +137,7 @@ class Action extends Admin {
 
 	/**
 	 * @title 行为日志列表
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function log() {
 
@@ -158,7 +158,7 @@ class Action extends Admin {
 	}
 	/**
 	 * @title 查看行为日志
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function detail($id = 0) {
 		$model = model('ActionLog');
@@ -184,7 +184,7 @@ class Action extends Admin {
 	/**
 	 * @title 删除日志
 	 * @param mixed $id
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function dellog() {
 		$id = $this->getArrayParam('id');

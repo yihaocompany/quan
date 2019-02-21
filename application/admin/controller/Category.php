@@ -131,7 +131,7 @@ class Category extends Admin {
 	}
 	/**
 	 * @title 删除分类
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function remove($id) {
 		if (empty($id)) {
@@ -161,7 +161,7 @@ class Category extends Admin {
 	/**
 	 * 操作分类初始化
 	 * @param string $type
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function operate($type = 'move', $from = '') {
 		//检查操作参数
@@ -197,7 +197,7 @@ class Category extends Admin {
 	
 	/**
 	 * @title 移动分类
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function move() {
 		$to   = input('post.to');
@@ -212,7 +212,7 @@ class Category extends Admin {
 
 	/**
 	 * @title 合并分类
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function merge() {
 		$to    = input('post.to');
@@ -249,7 +249,7 @@ class Category extends Admin {
 
 	/**
 	 * @title 修改状态
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function status() {
 		$id     = $this->getArrayParam('id');
@@ -270,7 +270,7 @@ class Category extends Admin {
 	
 	/**
 	 * @title 生成频道
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add_channel() {
 			if ($this->request->isPost()) {

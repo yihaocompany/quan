@@ -196,7 +196,7 @@ function get_addon_config($name) {
  * 插件显示内容里生成访问插件的url
  * @param string $url url
  * @param array $param 参数
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function addons_url($url, $param = array()) {
 	$url        = parse_url($url);
@@ -226,7 +226,7 @@ function addons_url($url, $param = array()) {
  * 获取导航URL
  * @param  string $url 导航URL
  * @return string      解析或的url
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_nav_url($url) {
 	switch ($url) {
@@ -246,7 +246,7 @@ function get_nav_url($url) {
  * @param int $cover_id
  * @param string $field
  * @return 完整的数据  或者  指定的$field字段值
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_cover($cover_id, $field = null) {
 	if (empty($cover_id)) {
@@ -268,7 +268,7 @@ function get_cover($cover_id, $field = null) {
  * @param int $file_id
  * @param string $field
  * @return 完整的数据  或者  指定的$field字段值
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_file($file_id, $field = null) {
 	if (empty($file_id)) {
@@ -324,7 +324,7 @@ function in_array_case($value, $array) {
  * 数据签名认证
  * @param  array  $data 被认证的数据
  * @return string       签名
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function data_auth_sign($data) {
 	//数据类型检测
@@ -340,7 +340,7 @@ function data_auth_sign($data) {
 /**
  * 检测用户是否登录
  * @return integer 0-未登录，大于0-当前登录用户ID
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function is_login() {
 	$user = session('user_auth');
@@ -354,7 +354,7 @@ function is_login() {
 /**
  * 检测当前用户是否为管理员
  * @return boolean true-管理员，false-非管理员
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function is_administrator($uid = null) {
 	$uid = is_null($uid) ? is_login() : $uid;
@@ -401,7 +401,7 @@ function get_client_ip($type = 0, $adv = false) {
  * 时间戳格式化
  * @param int $time
  * @return string 完整的时间显示
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function time_format($time = NULL, $format = 'Y-m-d H:i') {
 	$time = $time === NULL ? time() : intval($time);
@@ -507,7 +507,7 @@ function list_sort_by($list, $field, $sortby = 'asc') {
  * @param string $pid parent标记字段
  * @param string $level level标记字段
  * @return array
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root = 0) {
 	// 创建Tree
@@ -636,7 +636,7 @@ function parse_config_attr($string) {
  * @param int $record_id 触发行为的记录id
  * @param int $user_id 执行行为的用户id
  * @return boolean
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function action_log($action = null, $model = null, $record_id = null, $user_id = null) {
 
@@ -711,7 +711,7 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
  * @param string $action 行为id或者name
  * @param int $self 替换规则里的变量为执行用户的id
  * @return boolean|array: false解析出错 ， 成功返回规则数组
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function parse_action($action = null, $self) {
 	if (empty($action)) {
@@ -759,7 +759,7 @@ function parse_action($action = null, $self) {
  * @param int $action_id 行为id
  * @param array $user_id 执行的用户id
  * @return boolean false 失败 ， true 成功
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function execute_action($rules = false, $action_id = null, $user_id = null) {
 	if (!$rules || empty($action_id) || empty($user_id)) {
@@ -830,7 +830,7 @@ function mk_dir($dir, $mode = 0755) {
  * @param  string $str  要分割的字符串
  * @param  string $glue 分割符
  * @return array
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function str2arr($str = '', $glue = ',') {
 	if ($str) {
@@ -845,7 +845,7 @@ function str2arr($str = '', $glue = ',') {
  * @param  array  $arr  要连接的数组
  * @param  string $glue 分割符
  * @return string
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function arr2str($arr = array(), $glue = ',') {
 	if (empty($arr)) {
@@ -860,7 +860,7 @@ function arr2str($arr = array(), $glue = ',') {
  * @param  number $size      字节数
  * @param  string $delimiter 数字和单位分隔符
  * @return string            格式化后的带单位的大小
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function format_bytes($size, $delimiter = '') {
 	$units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');

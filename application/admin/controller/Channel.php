@@ -59,7 +59,7 @@ class Channel extends Admin {
 
 	/**
 	 * @title 添加频道
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add() {
 		if ($this->request->isPost()) {
@@ -95,7 +95,7 @@ class Channel extends Admin {
 	}
 	/**
 	 * @title 编辑频道
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function edit($id = 0) {
 		if ($this->request->isPost()) {
@@ -138,7 +138,7 @@ class Channel extends Admin {
 	}
 	/**
 	 * @title 删除频道
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del() {
 		$id = $this->getArrayParam('id');
@@ -161,7 +161,7 @@ class Channel extends Admin {
 	}
 	/**
 	 * @title 导航排序
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function sort() {
 		if ($this->request->isGet()) {

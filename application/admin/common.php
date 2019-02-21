@@ -43,7 +43,7 @@ function int_to_string(&$data, $map = array('status' => array(1 => '正常', -1 
  * 获取对应状态的文字信息
  * @param int $status
  * @return string 状态文字 ，false 未获取到
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_status_title($status = null) {
 	if (!isset($status)) {
@@ -81,7 +81,7 @@ function show_status_op($status) {
  * 获取行为类型
  * @param intger $type 类型
  * @param bool $all 是否返回全部类型
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_action_type($type, $all = false) {
 	$list = array(
@@ -98,7 +98,7 @@ function get_action_type($type, $all = false) {
  * 获取行为数据
  * @param string $id 行为id
  * @param string $field 需要获取的字段
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_action($id = null, $field = null) {
 	if (empty($id) && !is_numeric($id)) {
@@ -117,7 +117,7 @@ function get_action($id = null, $field = null) {
  * @param mixed $value 条件，可用常量或者数组
  * @param string $condition 条件字段
  * @param string $field 需要返回的字段，不传则返回整个数据
- * @author huajie <banhuajie@163.com>
+ * @author wanghaibin <574574@qq.com>
  */
 function get_document_field($value = null, $condition = 'id', $field = null) {
 	if (empty($value)) {

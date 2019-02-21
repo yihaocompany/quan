@@ -23,7 +23,7 @@ class Model extends Admin {
 
 	/**
 	 * @title 模型列表
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function index() {
 		$map = array('status' => array('gt', -1));
@@ -48,7 +48,7 @@ class Model extends Admin {
 
 	/**
 	 * @title 新增模型
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function add(\think\Request $request) {
 		if ($this->request->isPost()) {
@@ -110,7 +110,7 @@ class Model extends Admin {
 
 	/**
 	 * @title 删除模型
-	 * @author huajie <banhuajie@163.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function del() {
 		$result = $this->model->del();
@@ -132,7 +132,7 @@ class Model extends Admin {
 
 	/**
 	 * @title 更新数据
-	 * @author colin <colin@tensent.cn>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	public function status(\think\Request $request) {
 		$map['id'] = $request->param('id');

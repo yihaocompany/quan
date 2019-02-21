@@ -13,7 +13,7 @@ class Tree {
 	 * @param string $pid parent标记字段
 	 * @param string $level level标记字段
 	 * @return array
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	protected function list_to_tree($list, $pk='id', $pid = 'pid', $child = '_child', $root = 0) {
 	    // 创建Tree

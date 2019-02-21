@@ -48,7 +48,7 @@ class Config extends Base{
 	 * 根据配置类型解析配置
 	 * @param  integer $type  配置类型
 	 * @param  string  $value 配置值
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 * @author wanghaibin <574574@qq.com>
 	 */
 	private function parse($type, $value){
 		switch ($type) {
