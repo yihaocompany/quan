@@ -19,7 +19,7 @@
 				<ul class="nav nav-tabs">
 					<li {if $model_id == ''}class="active"{/if}><a href="{:url('admin/category/index')}">全部</a></li>
 					{volist name="model_list" id="item"}
-					<li {if $item['id'] == $model_id}class="active"{/if}>
+					<li {if $item['id'] == $model_id} class="active"{/if}>
 						<a href="{:url('admin/category/index',array('model_id'=>$item['id']))}">{$item['title']}</a>
 					</li>
 					{/volist}

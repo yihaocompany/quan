@@ -1,0 +1,106 @@
+{extend name="public/base"/}
+{block name="body"}
+<div class="main-box clearfix">
+    <header class="main-box-header clearfix">
+        <div class="pull-left">
+            <h2>{:isset($info['id'])?'编辑':'新增'}网站（主要域名）</h2>
+        </div>
+        <div class="pull-right"></div>
+    </header>
+    <div class="main-box-body clearfix">
+        <form method="post" class="form form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-2 control-label">域名</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="title" value="{$info.domain|default=''}" style="width: 80%">
+                    <span class="help-block">（需绑定此域名）</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">网站名称</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="webname" value="{$info['webname']|default=''}" style="width: 50%">
+                    <span class="help-block">（网站名称显示在版权中）</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">EMAIL</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="email" value="{$info['email']|default=''}" style="width: 50%">
+                    <span class="help-block">（EMAIL名称显示在版权中）</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">地址</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="address" value="{$info['address']|default=''}" style="width: 50%">
+                    <span class="help-block">（地址名称显示在版权中）</span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">网站logo</label>
+                <div class="col-lg-8">
+                    {:widget('common/Form/show',array(array('name'=>'logo','type'=>'image'),$info))}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">是否有效</label>
+                <div class="col-lg-1">
+                    <select name="status" class="form-control">
+                        <option value="0" >否</option>
+                        <option value="1" {if isset($info['status']) && $info['status']==1}selected{/if}>是
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">电话</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="phone" value="{$info.phone|default=''}" style="width: 60%;">
+
+                    <span class="help-block">（显示在网站底部）</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">标题</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="title" value="{$info.title|default=''}" style="width: 60%;">
+
+                    <span class="help-block">（优化用 标题中体现关键字）</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">关键字</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" name="keywords">{$info.keywords|default=''}</textarea>
+                    <span class="help-block">（优化用不要超过300汉字，用英文的逗号分隔）</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">描述</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" name="description">{$info.description|default=''}</textarea>
+                    <span class="help-block">（优化用 不要超过300汉字）</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="hidden" name="id" value="{$info['id']|default=''}">
+                    <button class="btn btn-success submit-btn ajax-post" type="submit" target-form="form-horizontal">确 定</button>
+                    <button class="btn btn-danger btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plugs/webuploader/webuploader.css">
+<script type="text/javascript" src="__PUBLIC__/plugs/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugs/webuploader/webuploader.custom.js"></script>
+{/block}

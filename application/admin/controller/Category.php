@@ -187,7 +187,6 @@ class Category extends Admin {
 			$pid = db('Category')->getFieldById($from, 'pid');
 			$pid && array_unshift($list, array('id' => 0, 'title' => '根分类'));
 		}
-
 		$this->assign('type', $type);
 		$this->assign('operate', $operate);
 		$this->assign('from', $from);
@@ -310,4 +309,6 @@ class Category extends Admin {
 				return $this->fetch('edit_channel');
 			}
 	}
+
+
 }

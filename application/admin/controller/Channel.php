@@ -216,4 +216,82 @@ class Channel extends Admin {
 			return $this->error("操作失败！");
 		}
 	}
+
+    public function domain(){
+
+        $id = input('nav_id');
+        if($id>0){
+            $map=['web.status'=>1];
+            $list=db('web_config')->alias('web')
+                ->Join("nav_web nav",'web.id = nav.web_id',"left")->join('channel ch','ch.id=nav.nav_id','left')
+                ->field("ch.title as topmenu , web.id as id,web.domain as domain,nav.menu as menu,nav.id as menuid,nav.status as status,web.status as webstatus,nav.title as navtitle,nav.keywords as navkeywords, nav.description as navdescription")
+                ->where($map)->select();
+            $this->assign('list', $list);
+            $this->assign('nav_id', $id);
+            return $this->fetch();
+        }else{
+            return $this->error('请选择要操作的数据!');
+
+        }
+
+    }
+
+    public function fornav(){
+        return $this->fetch();
+    }
+    public function selectdomain(){
+
+        $web_id = input('web_id');
+        $nav_id = input('nav_id');
+        $status=input('status');
+        if ($web_id>0 and $nav_id>0){
+
+            //此domain是不是存在 是不是有效
+
+            $where=['id'=>$web_id,'status'=>1];
+            if(!db('web_config')->where($where)->find()){
+                //修改
+                return json(['code'=>'0','msg'=>'域名不正常']);
+            }
+
+            $map=['web_id'=>$web_id,'nav_id'=>$nav_id];
+            $record=db('nav_web')->where($map)->find();
+            if($record){
+                //修改
+                $newmap['id']=$record['id'];
+                if(db('nav_web')->where($newmap)->update(['status'=>$status])){
+                    return json(['code'=>'1','msg'=>'修改成功']);
+                }else{
+                    return json(['code'=>'0','msg'=>'修改失败']);
+                }
+            }else{
+                //增加
+
+                $newdata=['web_id'=>$web_id,'nav_id'=>$nav_id,'status'=>$status];
+
+                if(db('nav_web')->where($map)->insert($newdata)){
+                    return json(['code'=>'1','msg'=>'修改成功']);
+                }else{
+                    return json(['code'=>'0','msg'=>'修改失败']);
+                }
+
+            }
+            //如果没有记录到
+
+            $data['status'] = input('status');
+            $where['id'] = $id;
+            if($this->mod->Dosave($data, $where)){
+                $rdata=array('status'=>1,'info'=>'修改成功');
+                cache('links',null);
+            }else{
+                $rdata=array('status'=>0,'info'=>'修改失败');
+            }
+        }else{
+            $rdata=array('status'=>0,'info'=>'修改失败');
+        }
+        return json($rdata);
+
+
+
+    }
 }

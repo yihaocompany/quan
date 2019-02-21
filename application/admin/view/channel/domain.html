@@ -1,0 +1,99 @@
+{extend name="public/base"/}
+{block name="body"}
+<div class="main-box clearfix">
+    <header class="main-box-header clearfix">
+        <div class="pull-left">
+            <h2>
+                {$info['id']?'编辑':'新增'}导航
+            </h2>
+        </div>
+    </header>
+    <div class="main-box-body clearfix">
+        <form method="post" class="form form-horizontal">
+            <div class="table-responsive clearfix">
+                <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>top菜单</th>
+                    <th>域名菜单</th>
+                    <th>域名</th>
+
+                    <th>是否分配</th>
+                    <th>优化</th>
+                    <th>优化配置</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="list" id="item"}
+                <tr>
+                    <td>{$item.id}</td>
+                    <td>{$item.topmenu}</td>
+                    <td>{if(!$item.menu)}未输入域名菜单则调用Top菜单{/if}</td>
+                    <td><a href="{:url('domain/edit',['id'=>$item.id])}">{$item.domain}</a> </td>
+                    <td>
+                              <input type="checkbox"  {$item.status ?'checked':''} id='checkbox_{$item.id}' value='{$item.id}' {if($item.status)}checked{/if}>
+                    </td>
+                    <td>
+                        {if(!$item.navtitle)}末有标题{else/}已有标题{/if}｜
+                        {if(!$item.navkeywords)}末有关键字{else/}已有关键字{/if}｜
+                        {if(!$item.navdescription)}末有描述{else/}已有描述{/if}｜
+
+                    </td>
+                    <td>
+                        <span id="modi_{$item.id}">
+
+                            {if($item.status)}
+                                     <a href="{:url('channel/fornav',['id'=>$item.id])}">修改优化配置</a>
+                            {else/}
+                              未分配域名
+                            {/if}
+
+
+
+                        </span>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    let status=0;
+    let checkbox_value=0;
+    $("input[type=checkbox]").click(function() {
+         checkbox_value = $(this).attr('value');
+        if($("#checkbox_" + checkbox_value).is(":checked")){
+            status=1
+        }else{
+            status=0;
+        }
+        let vpdata={'web_id':checkbox_value,'status':status,'nav_id':{$nav_id}};
+        $.post("{:url('channel/selectdomain')}", vpdata, success, "json");
+    });
+
+    function success(data){
+        if(data.code){
+            layer.msg(data.msg, {time:3000, end:function(){
+                   // window.location.href = data.url;
+                    if(status){
+                        $("#modi_"+checkbox_value).html(  "<a href=channel/fornav/"+checkbox_value+">修改优化配置</a>");
+                    }else{
+                        $("#modi_"+checkbox_value).html(  "未分配域名");
+                    }
+                }});
+        } else {
+            layer.msg(data.msg, {time:3000, end:function(){
+                    //刷新验证码
+                   // $(".reloadverify").click();
+                }});
+        }
+    }
+</script>
+{/block}
