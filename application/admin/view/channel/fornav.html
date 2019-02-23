@@ -3,7 +3,7 @@
 <div class="main-box clearfix">
     <header class="main-box-header clearfix">
         <div class="pull-left">
-            <h2>{:isset($info['id'])?'编辑':'新增'}网站（主要域名）</h2>
+            <h2>{:isset($info['id'])?'编辑':'新增'}Top菜单关联的菜单</h2>
         </div>
         <div class="pull-right"></div>
     </header>
@@ -12,65 +12,27 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">域名</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="title" value="{$info.domain|default=''}" style="width: 80%">
-                    <span class="help-block">（需绑定此域名）</span>
+                    {$info['domain']|default=''}
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label">网站名称</label>
+                <label class="col-lg-2 control-label">TOP菜单</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="webname" value="{$info['webname']|default=''}" style="width: 50%">
-                    <span class="help-block">（网站名称显示在版权中）</span>
+                    {$info['topmenu']|default=''}
                 </div>
             </div>
-
             <div class="form-group">
-                <label class="col-lg-2 control-label">EMAIL</label>
+                <label class="col-lg-2 control-label">当前域名菜单名</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="email" value="{$info['email']|default=''}" style="width: 50%">
-                    <span class="help-block">（EMAIL名称显示在版权中）</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-2 control-label">地址</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" name="address" value="{$info['address']|default=''}" style="width: 50%">
-                    <span class="help-block">（地址名称显示在版权中）</span>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">网站logo</label>
-                <div class="col-lg-8">
-                    {:widget('common/Form/show',array(array('name'=>'logo','type'=>'image'),$info))}
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">是否有效</label>
-                <div class="col-lg-1">
-                    <select name="status" class="form-control">
-                        <option value="0" >否</option>
-                        <option value="1" {if isset($info['status']) && $info['status']==1}selected{/if}>是
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-2 control-label">电话</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" name="phone" value="{$info.phone|default=''}" style="width: 60%;">
-
-                    <span class="help-block">（显示在网站底部）</span>
+                    <input type="text" class="form-control" name="menu" value="{$info['menu']|default=''}" style="width: 50%">
+                    <span class="help-block">（在此域名中的菜单名称）</span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">标题</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="title" value="{$info.title|default=''}" style="width: 60%;">
-
-                    <span class="help-block">（优化用 标题中体现关键字）</span>
+                    <input type="text" class="form-control" name="title" value="{$info['title']|default=''}" style="width: 50%">
+                    <span class="help-block">（地址名称显示在版权中）</span>
                 </div>
             </div>
             <div class="form-group">
@@ -85,6 +47,16 @@
                 <div class="col-lg-10">
                     <textarea class="form-control" name="description">{$info.description|default=''}</textarea>
                     <span class="help-block">（优化用 不要超过300汉字）</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">导航类型</label>
+                <div class="col-lg-8">
+                    <select name="status" id="type" class="form-control" style="width:auto;">
+                        <option value="1" {$info.status==1?"selected":""} >有效</option>
+                        <option value="0" {$info.status!=1?"selected":""} >无效</option>
+                    </select>
                 </div>
             </div>
 

@@ -68,4 +68,7 @@ return [
         'size'       => '2',
         'ext'        => 'jpg,jpeg,png,gif'
     ],
+
+
+
 ];

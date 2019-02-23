@@ -24,6 +24,7 @@
 						<th>网站域名</th>
 						<th>电话 模版</th>
 						<th>手机 模版</th>
+						<th>状态</th>
 						<th>时间</th>
 						<th>操作</th>
 					</tr>
@@ -37,11 +38,17 @@
 						<td>{$item['domain']}</td>
 						<td>{$item['template']}</td>
 						<td>{$item['mobile_template']}</td>
+						<td>	{$item['status']=='1'?"生效":"失效"}</td>
 						<td>{$item['create_at']|date='Y-m-d',###}</td>
 
 						<td>
 							<a href="{:url('edit?id='.$item['id'])}">编辑</a>
-							<a href="{:url('status?id='.$item['id'])}" class="confirm ajax-get">失效</a>
+
+&nbsp;&nbsp;
+							<a href="{:url('status?id='.$item['id'].'&status='.(1-$item.status))}" class="confirm ajax-get">
+								{$item['status']=='1'?"点击失效(现生效)":"点击生效(现失效 )"}
+
+							</a>
 
 						</td>
 					</tr>

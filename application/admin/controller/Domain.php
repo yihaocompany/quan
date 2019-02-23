@@ -37,19 +37,31 @@ class Domain extends Admin {
 	}
 
 	/**
-	 * @title 添加链接
+	 * @title 添加网站
 	 */
 	public function add() {
         $webconfig = model('WebConfig');
 		if ($this->request->isPost()) {
 			$data = input('post.');
+
+			if($data['domain']==""){
+                return $this->error("域名不能为空");
+            }
+
+			$map['domain']=$data['domain'];
+			if(db('web_config')->where($map)->find()){
+                return $this->error("已有此域名");
+            }
+
+
+
 			$data['create_at']=strtotime('now');
             $data['update_at']=strtotime('now');
 			if ($data) {
 				unset($data['id']);
-				$result = $webconfig->save($data);
+				$result = $webconfig->insert($data);
 				if ($result) {
-					return $this->success("添加成功！", url('Link/index'));
+					return $this->success("添加成功！", url('Domain/index'));
 				} else {
 					return $this->error($webconfig->getError());
 				}
@@ -58,7 +70,6 @@ class Domain extends Admin {
 			}
 		} else {
             $this->assign(array('info'=>null));
-
 			$this->setMeta("添加网站");
 			return $this->fetch('edit');
 		}
@@ -68,8 +79,18 @@ class Domain extends Admin {
      */
 
     public function  status(){
-        $link = model('WebConfig');
+
         $id   = input('id', '', 'trim,intval');
+        $data['status']=input('status', '0', 'trim,intval');
+        $onerow=db('web_config')->where(['id'=>$id])->update($data);
+        if($onerow){
+            return $this->success("修改成功！", url('Domain/index'));
+        }else{
+            return $this->error("修改失败！");
+        }
+
+
+
     }
 
 

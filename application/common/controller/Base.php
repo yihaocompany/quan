@@ -2,7 +2,7 @@
 namespace app\common\controller;
 
 use think\Controller;
-
+use think\cache\driver\Redis;
 class Base extends Controller{
 
 	protected $url_path = "";     //当前完全访问路径

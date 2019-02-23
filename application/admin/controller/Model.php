@@ -136,13 +136,10 @@ class Model extends Admin {
 	 */
 	public function status(\think\Request $request) {
 		$map['id'] = $request->param('id');
-
 		$data['status'] = $request->param('status');
-
 		if (null == $map['id'] || null == $data['status']) {
 			return $this->error('参数不正确！');
 		}
-
 		$model = $this->model->where($map)->find();
 		if ($model['list_grid'] == '' && $data['status'] == 1) {
 			return $this->error('模型列表未定义');

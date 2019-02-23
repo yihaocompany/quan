@@ -61,7 +61,7 @@
 									{/if}
 								</td>
 								<td>
-									<a title="编辑" href="{:url('domain?nav_id='.$list['id'])}">对应网站</a>
+									<a title="编辑" href="{:url('domain?channel_id='.$list['id'])}">对应网站</a>
 									<a title="编辑" href="{:url('edit?id='.$list['id'].'&pid='.$list['pid'])}">编辑</a>
 									<a title="{$list.status|show_status_op}" href="{:url('setStatus?ids='.$list['id'].'&status='.abs(1-$list['status']))}" class="ajax-get">{$list.status|show_status_op}</a>
 									<a title="删除" href="{:url('del?id='.$list['id'])}" class="confirm ajax-get">删除</a>

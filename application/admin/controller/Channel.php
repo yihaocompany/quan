@@ -177,7 +177,6 @@ class Channel extends Admin {
 				}
 			}
 			$list = db('Channel')->where($map)->field('id,title')->order('sort asc,id asc')->select();
-
 			$this->assign('list', $list);
 			$this->setMeta('导航排序');
 			return $this->fetch();
@@ -219,41 +218,107 @@ class Channel extends Admin {
 
     public function domain(){
 
-        $id = input('nav_id');
+        $id = input('channel_id');
+        $domainlist=db("web_config")->where(['status'=>1])->select();
+        $flag=false;
+        $i=0;
+        db("web_config")->startTrans();
+        foreach ($domainlist as $item){
+            $havenav_web=db('nav_web')->where(['web_id'=>$item['id'],'nav_id'=>$id])->find();
+            if(!$havenav_web){
+                $data['web_id']=$item['id'];
+                $data['nav_id']=$id;
+                $data['status']=0;
+                $i==0? $flag=db('nav_web')->insert($data):$flag=$flag&&db('nav_web')->insert($data);
+                $i++;
+            }
+        }
+        if((!$flag) and $i>0){
+            db("web_config")->rollback();
+            return $this->error('数据库发生错误!');
+        }else{
+            db("web_config")->commit();
+        }
+
         if($id>0){
-            $map=['web.status'=>1];
-            $list=db('web_config')->alias('web')
-                ->Join("nav_web nav",'web.id = nav.web_id',"left")->join('channel ch','ch.id=nav.nav_id','left')
-                ->field("ch.title as topmenu , web.id as id,web.domain as domain,nav.menu as menu,nav.id as menuid,nav.status as status,web.status as webstatus,nav.title as navtitle,nav.keywords as navkeywords, nav.description as navdescription")
+            $map=['web.status'=>1,'ch.id'=>$id];
+            $list=db('channel')->alias('ch')
+                ->join('nav_web nav','ch.id=nav.nav_id','left')
+                ->Join("web_config web",'web.id = nav.web_id',"left")
+                ->field("ch.title as topmenu , ch.id as cid,web.id as web_id ,
+                web.domain as domain,nav.menu as menu,nav.id as id,
+                nav.status as status,web.status as webstatus,
+                nav.title as navtitle,nav.keywords as navkeywords, nav.description as navdescription")
                 ->where($map)->select();
             $this->assign('list', $list);
             $this->assign('nav_id', $id);
             return $this->fetch();
         }else{
             return $this->error('请选择要操作的数据!');
-
         }
-
     }
 
     public function fornav(){
-        return $this->fetch();
+
+        if ($this->request->isPost()) {
+            $data    = $this->request->post();
+            $id=$data['id'];
+
+            $onerow=db('nav_web')->where(['id'=>$id])->find();
+
+
+
+            unset($data['id']);
+            $map=['id'=>$id];
+            if(db('nav_web')->where($map)->update($data)){
+                return $this->success('排序成功！', url('/admin/channel/domain/channel_id/'.$onerow['nav_id']));
+            }else{
+                return $this->error('修改失败!');
+            }
+
+        }else{
+
+            $nav_id = input('nav_id');
+            if($nav_id>0){
+                $map=['nav.id'=>$nav_id];
+                $onelist=db('channel')->alias('ch')
+                    ->join('nav_web nav','ch.id=nav.nav_id','left')
+                    ->Join("web_config web",'web.id = nav.web_id',"left")
+                    ->field("ch.title as topmenu , ch.id as cid,web.id as web_id ,
+                web.domain as domain,nav.menu as menu,nav.id as id,
+                nav.status as status,web.status as webstatus,
+                nav.title as title,nav.keywords as keywords, nav.description as description")
+                    ->where($map)->find();
+                if($onelist){
+                    $this->assign('info',$onelist);
+                }else{
+                    return $this->error('无此数据!');
+                }
+
+            }else{
+                return $this->error('无此数据!');
+            }
+            return $this->fetch();
+        }
+
+
+
+
+
+
+
     }
     public function selectdomain(){
-
-        $web_id = input('web_id');
-        $nav_id = input('nav_id');
-        $status=input('status');
+        $web_id = input('webid');
+        $nav_id = input('navid');
+        $status = input('status');
         if ($web_id>0 and $nav_id>0){
-
             //此domain是不是存在 是不是有效
-
             $where=['id'=>$web_id,'status'=>1];
             if(!db('web_config')->where($where)->find()){
                 //修改
                 return json(['code'=>'0','msg'=>'域名不正常']);
             }
-
             $map=['web_id'=>$web_id,'nav_id'=>$nav_id];
             $record=db('nav_web')->where($map)->find();
             if($record){
@@ -266,32 +331,17 @@ class Channel extends Admin {
                 }
             }else{
                 //增加
-
                 $newdata=['web_id'=>$web_id,'nav_id'=>$nav_id,'status'=>$status];
-
                 if(db('nav_web')->where($map)->insert($newdata)){
                     return json(['code'=>'1','msg'=>'修改成功']);
                 }else{
                     return json(['code'=>'0','msg'=>'修改失败']);
                 }
-
             }
-            //如果没有记录到
 
-            $data['status'] = input('status');
-            $where['id'] = $id;
-            if($this->mod->Dosave($data, $where)){
-                $rdata=array('status'=>1,'info'=>'修改成功');
-                cache('links',null);
-            }else{
-                $rdata=array('status'=>0,'info'=>'修改失败');
-            }
         }else{
-            $rdata=array('status'=>0,'info'=>'修改失败');
+            $rdata=array('code'=>0,'msg'=>'修改失败');
         }
         return json($rdata);
-
-
-
     }
 }
