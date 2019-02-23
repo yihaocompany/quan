@@ -23,7 +23,7 @@ class Tag extends Admin {
         //读取规则列表
         $map = array('status' => array('EGT', 0));
 
-        $list = $this->db->where($map)->order('sort asc')->paginate(10, false, array(
+        $list = $this->db->where($map)->order('sort asc')->paginate($r, false, array(
             'query'  => $this->request->param()
         ));
 
