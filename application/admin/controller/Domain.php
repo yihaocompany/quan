@@ -21,12 +21,10 @@ class Domain extends Admin {
 	 */
 	public function index() {
         $map = array();
-
         $order = "id desc";
         $list  = db('web_config')->where($map)->order($order)->paginate(10, false, array(
             'query'  => $this->request->param()
         ));
-
         $data = array(
             'list' => $list,
             'page' => $list->render(),
@@ -43,17 +41,13 @@ class Domain extends Admin {
         $webconfig = model('WebConfig');
 		if ($this->request->isPost()) {
 			$data = input('post.');
-
 			if($data['domain']==""){
                 return $this->error("域名不能为空");
             }
-
 			$map['domain']=$data['domain'];
 			if(db('web_config')->where($map)->find()){
                 return $this->error("已有此域名");
             }
-
-
 
 			$data['create_at']=strtotime('now');
             $data['update_at']=strtotime('now');
@@ -88,8 +82,6 @@ class Domain extends Admin {
         }else{
             return $this->error("修改失败！");
         }
-
-
 
     }
 

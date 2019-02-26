@@ -9,29 +9,57 @@
 
 namespace app\common\controller;
 
+use think\Request;
+
 class Upload {
 
 	/**
 	 * 上传控制器
 	 */
-	public function upload() {
+	public function upload($ed=0) {
 		$upload_type = input('get.filename', 'images', 'trim');
+
 		$config      = $this->$upload_type();
 		// 获取表单上传文件 例如上传了001.jpg
 		$file = request()->file('file');
+
 		$size = $config['size'] * 1024 * 1024;
 		$info = $file->validate(array(
 			'size'     => $size,
 			'ext'      => $config['ext'],
 		))->move($config['rootPath'], true, false);
 
+
+
 		if ($info) {
-			$return['status'] = 1;
-			$return['info']   = $this->save($config, $upload_type, $info);
+
+		    if($ed) {
+
+                $return['info'] =$this->save($config, $upload_type, $info);
+                $return = ["errno" => 0, 'data' => [ $return['info']['path'] ] ];
+
+            }else{
+                $return['status'] = 1;
+                $return['info'] = $this->save($config, $upload_type, $info);
+            }
+
 		} else {
-			$return['status'] = 0;
-			$return['info']   = $file->getError();
+
+            if($ed) {
+                $return = ["errno" =>1, 'data' =>$file->getError()];
+
+            }else{
+
+                $return['status'] = 1;
+                $return['info'] = $this->save($config, $upload_type, $info);
+            }
+
 		}
+
+
+
+
+
 
 		echo json_encode($return);
 	}
