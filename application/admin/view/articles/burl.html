@@ -1,0 +1,39 @@
+{extend name="public/nomenubase"/}
+{block name="body"}
+<div class="main-box clearfix">
+    <header class="main-box-header clearfix">
+        <div class="pull-left">
+            <h2>{$meta_title}</h2>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-danger ajax-post confirm" url="{:url('del')}" target-form="ids">全部增加</button>
+        </div>
+    </header>
+    <div class="main-box-body clearfix">
+        <div class="table-responsive clearfix">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="30"><input class="checkbox check-all" type="checkbox"></th>
+                    <th width="60">ID</th>
+                    <th width="180">域名</th>
+                    <th width="180">状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="list" id="item"}
+                <tr>
+                    <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$item['id']}"></td>
+                    <td>{$item['id']}</td>
+                    <td>{$item['domain']}</td>
+                    <td>{$item['status']}</td>
+
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            {$page}
+        </div>
+    </div>
+</div>
+{/block}

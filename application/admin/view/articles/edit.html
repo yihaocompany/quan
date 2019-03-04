@@ -42,12 +42,12 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-2 control-label">文章描述(通用)</label>
+				<label class="col-lg-2 control-label">文章(通用)</label>
 				<div class="col-lg-8">
 					<div id="textarea" style="width: 80%;height: 180px">
 						<p><?php echo $info['content']?></p>
 					</div>
-					<textarea id="text1" style="display: none;" name="content"></textarea>
+					<textarea id="text1" style="display: none;" name="content"><?php echo $info['content']?></textarea>
 				</div>
 			</div>
 
@@ -58,8 +58,6 @@
 				<span class="help-block"></span>
 			</div>
 		   </div>
-
-
 			<div class="form-group">
 				<label class="col-lg-2 control-label">有效</label>
 				<div class="col-lg-2">
@@ -71,9 +69,6 @@
 
 				</div>
 			</div>
-
-
-
 		<div class="form-group">
 			<label class="col-lg-2 control-label">优先级</label>
 			<div class="col-lg-2">

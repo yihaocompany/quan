@@ -19,7 +19,11 @@ class Base extends Controller{
 			$config = model('Config')->lists();
 			cache('db_config_data', $config);
 		}
+
+		//dump(cache('db_config_data'));
 		config($config);
+
+		$this->assign('Gcon',cache('db_config_data'));
 	}
 
 	public function execute($mc = null, $op = '', $ac = null) {

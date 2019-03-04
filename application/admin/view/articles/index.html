@@ -20,10 +20,12 @@
 					<tr>
 						<th width="30"><input class="checkbox check-all" type="checkbox"></th>
 						<th width="60">ID</th>
-						<th width="280">标题</th>
-						<th width="180">代表图片</th>
+						<th width="280">标题（通用）</th>
+						<th width="100">分类（通用）</th>
+						<th width="50"></th>
+						<th width="180">代表图片（通用）</th>
 						<th width="180">内容</th>
-						<th width="180">标签(最多10个)</th>
+						<th width="130">标签(最多10个)</th>
 						<th width="180">创建时间</th>
 						<th>操作</th>
 					</tr>
@@ -34,13 +36,16 @@
 						<td><input class="ids row-selected" type="checkbox" name="id[]" value="{$item['id']}"></td>
 						<td>{$item['id']}</td>
 						<td>{$item['title']}</td>
-						<td><img src="{$item['picture']}" width="100"></td>
+						<td><span id="category">{$item['title']}</span>	</td>
+						<td><a title="修改分类"   href="javascript:;"  onclick="category({$item['id']})">修改分类</a></td>
+						<td><img src="{$item['picture']}" width="50"> 	</td>
+
 						<td>{if($item['content']!="")}已有内容{else/}无内容{/if}</td>
 						<td>{$item['title']}</td>
 						<td>{$item['create_at']|date='Y-m-d H:i',###}</td>
 						<td>
 							<a title="编辑" href="{:url('edit?id='.$item['id'])}">编辑</a>
-							<a  href="javascript:;"  onclick="burl({$item['id']})">绑定域名</a>
+							<a  href="javascript:;"  onclick="burl({$item['id']})">绑定域名</a><br>
 							<a  href="javascript:;" onclick="tag({$item['id']})">标签分配</a>
 							<a title="删除" href="{:url('del?id='.$item['id'])}" class="confirm ajax-get">删除</a>
 						</td>
@@ -86,11 +91,26 @@ function tag(aticleid){
 		shadeClose: true,
 		shade: 0.8,
 		area: ['580px', '90%'],
-		content: "{:url('tag')}",
+		content: "{:url('tag')}"+'?id='+aticleid,
 
 	});
 	return;
 }
+
+function category(articleid){
+    layer.open({
+        type: 2,
+        title: '分类分配',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['580px', '90%'],
+        content: "{:url('category')}"+'?articleid='+articleid,
+
+    });
+    return;
+}
+
+
 function burl(aticleid){
 	layer.open({
 		type: 2,
@@ -98,7 +118,7 @@ function burl(aticleid){
 		shadeClose: true,
 		shade: 0.8,
 		area: ['580px', '90%'],
-		content: "{:url('domain')}",
+		content: "{:url('burl')}"+'?id='+aticleid,
 
 	});
 	return;

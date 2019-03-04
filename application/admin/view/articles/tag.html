@@ -1,5 +1,4 @@
 {extend name="public/nomenubase"/}
-
 {block name="body"}
 <div class="main-box clearfix">
     <header class="main-box-header clearfix">
@@ -7,7 +6,7 @@
             <h2>{$meta_title}</h2>
         </div>
         <div class="pull-right">
-            <button class="btn btn-danger ajax-post confirm" url="{:url('del')}" target-form="ids">全部增加</button>
+            <button class="btn btn-primary" url="{:url('del')}" target-form="ids">全部增加</button>
         </div>
     </header>
     <div class="main-box-body clearfix">
@@ -15,19 +14,30 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th width="30"><input class="checkbox check-all" type="checkbox"></th>
-                    <th width="60">ID</th>
-                    <th width="180">关键字</th>
+                    <td colspan="3">当前文章: {$article['title']}<br> 最多选择{$Gcon['tags']}个 并且第一个将增加内链
+                    <td>
+                </tr>
+                <tr>
+                    <td colspan="3">已增加<span id="counters">{$counter}</span>标签
+                    <td>
+                </tr>
+                <tr>
+                    <th width="10%"></th>
+                    <th width="10%">ID</th>
+                    <th width="80%">关键字</th>
                 </tr>
                 </thead>
                 <tbody>
+
+                <form method="post" class="layui-form aform cl ">
                 {volist name="list" id="item"}
                 <tr>
-                    <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$item['id']}"></td>
+                    <td><input  type="checkbox"   name="id_{$item['id']}" value="{$item['id']}" <?php if($item['status']==1){?> checked <?php }?>></td>
                     <td>{$item['id']}</td>
                     <td>{$item['tag']}</td>
                 </tr>
                 {/volist}
+                </form>
                 </tbody>
             </table>
             {$page}
@@ -35,3 +45,26 @@
     </div>
 </div>
 {/block}
+{block name="script"}
+
+<script>
+
+    $(":checkbox").bind("click",function () {
+        var status=$(this).prop('checked')?1:0;
+        var tagid=this.value;
+        var articleid={$articleid};
+        var data={'tagid':tagid,'articleid':articleid,'status':status};
+        $.post("{:url('Articles/tagbindarticle')}",data,function(res){
+            if(res.status){
+                $('#counters').html(res.total);
+                layer.msg(res.msg, {time: 2000});
+            }else{
+                $('#counters').html(res.total);
+                layer.msg(res.msg, {time: 2000});
+            }
+        },'json');
+    });
+
+</script>
+{/block}
+
