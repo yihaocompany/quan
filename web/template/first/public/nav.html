@@ -13,7 +13,21 @@
             {notempty name="topmenu"}
             {volist name="topmenu" id="menu"}
             <li class="nav-item active">
-                <a class="nav-link page-scroll" href="{$menu.url}" {if $menu['target'] !=0} target='_blank'{/if} >{$menu.title}</a>
+
+                <?php
+                if($menu['type']==1){
+                ?>
+                <a class="nav-link page-scroll" href="{$menu.url}" {if $menu['target'] !=0} target='_blank'{/if} >
+                {if($menu.menu!='')}
+                {$menu.menu}
+                {else/}
+                {$menu.title}
+                {/if}
+                </a>
+                <?php
+                }
+?>
+
             </li>
             {/volist}
             {else/}

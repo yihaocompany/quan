@@ -1,0 +1,30 @@
+<nav class="nav flex-column">
+
+<!--    <a class="nav-link active" href="javascript:void(0);">HTML</a>
+    <a class="nav-link" href="javascript:void(0);">CSS</a>
+    <a class="nav-link" href="javascript:void(0);">JavaScript</a>
+    <a class="nav-link" href="javascript:void(0);">Preview</a>-->
+
+    {notempty name="topmenu"}
+    {volist name="topmenu" id="menu"}
+    <li class="nav-item active">
+
+        <?php
+                if($menu['type']!=1){
+         ?>
+        <a class="nav-link" href="{$menu.url}" {if $menu['target'] !=0} target='_blank'{/if} >
+        {if($menu.menu!='')}
+        {$menu.menu}
+        {else/}
+        {$menu.title}
+        {/if}
+        </a>
+        <?php
+                }
+?>
+
+    </li>
+    {/volist}
+    {else/}
+    {/notempty}
+</nav>

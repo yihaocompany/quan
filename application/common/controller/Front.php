@@ -72,8 +72,21 @@ class Front extends Base{
             ->where('a.domain', $_SERVER['SERVER_NAME'])
             ->select();*/
 
-        $channel=db('channel')->order('sort desc')->order('id asc')->select();
-        $this->assign('topmenu',$channel);
+        $where=['domain'=> $_SERVER['SERVER_NAME'],'web.status'=>1,'c.status'=>1,'nav.status'=>1];
+        $menurows=null;
+        if(Cache::get( 'menu'.$_SERVER['SERVER_NAME'])){
+            $menurows=Cache::get( 'menu'.$_SERVER['SERVER_NAME']);
+        }else{
+            $menulist=db('channel')->alias('c')->join('nav_web nav','nav.nav_id=c.id','inner')->
+            join('web_config web','web.id=nav.web_id','inner')
+                ->field('c.* ,nav.menu as menu,nav.title as navtitle,nav.id as navid, web.id as webid')->where($where)->select();
+            Cache::set( 'menu'.$_SERVER['SERVER_NAME'],$menulist);
+            $menurows=$menulist;
+        }
+
+        //$channel=db('channel')->order('sort desc')->order('id asc')->select();
+
+        $this->assign('topmenu',$menurows);
 		$this->view->config($tpl_conf);
 	}
 }
