@@ -23,6 +23,7 @@
 						<th>名称</th>
 						<th>排序</th>
 						<th>时间</th>
+						<th>网站</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -33,6 +34,7 @@
 						<td>{$item['id']}</td>
 						<td>{$item['title']}</td>
 						<td>{$item['sort']}</td>
+						<td>分配域名</td>
 						<td>{$item['update_time']|date='Y-m-d',###}</td>
 						<td>
 							<a href="{:url('edit?id='.$item['id'])}">编辑</a>
