@@ -1,0 +1,82 @@
+{extend name="public/nomenubase"/}
+{block name="body"}
+<div class="main-box clearfix">
+    <header class="main-box-header clearfix">
+        <div class="pull-left">
+            <h2>{$meta_title}</h2>
+        </div>
+
+    </header>
+    <div class="main-box-body clearfix">
+        <div class="table-responsive clearfix">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td colspan="3">当前友情链接: {$one['title']}<br>
+                    <td>
+                </tr>
+                <tr>
+                    <td colspan="3">已选择<span id="counters">{$counter}</span>域名展示
+                    <td>
+                </tr>
+                <tr>
+                    <th width="10%"></th>
+                    <th width="10%">ID</th>
+                    <th width="80%">域名</th>
+                  <!--  <th width="60%">网站名(可修改)</th>-->
+                </tr>
+                </thead>
+                <tbody>
+
+                <form method="post" class="layui-form aform cl ">
+                    {volist name="list" id="item"}
+                    <tr>
+                        <td><input  type="checkbox"   name="id_{$item['id']}" value="{$item['id']}"
+                                    <?php
+                                            foreach($linklist as $eitem){
+                                                       if($item['id']==$eitem['web_id'] and $one['id']==$eitem['link_id']   and $eitem['status']==1){
+                                                        ?>
+                            checked
+                            <?php
+                                                        }
+
+                                                    }
+                         ?>
+>
+                        </td>
+                        <td>{$item['id']}</td>
+                        <td>{$item['domain']}</td>
+                     <!--   <td><input type="text"  class="form-control" value="{$item['title']}"> </td>-->
+                    </tr>
+                    {/volist}
+                </form>
+                </tbody>
+            </table>
+            {$page}
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+
+<script>
+    $(":checkbox").bind("click",function () {
+        var status=$(this).prop('checked')?1:0;
+        var webid=this.value;
+        var linkid={$linkid};
+        var data={'webid':webid,'linkid':linkid,'status':status};
+
+        $.post("{:url('Link/linkbinddomain')}",data,function(res){
+            if(res.status){
+                $('#counters').html(res.total);
+                layer.msg(res.msg, {time: 2000});
+            }else{
+                $('#counters').html(res.total);
+                layer.msg(res.msg, {time: 2000});
+            }
+        },'json');
+    });
+
+</script>
+{/block}
+

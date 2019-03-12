@@ -34,7 +34,10 @@
 						<td>{$item['id']}</td>
 						<td>{$item['title']}</td>
 						<td>{$item['sort']}</td>
-						<td>分配域名</td>
+						<td>
+							<a  href="javascript:;" onclick="mydomain({$item['id']})">域名分配</a>
+						</td>
+
 						<td>{$item['update_time']|date='Y-m-d',###}</td>
 						<td>
 							<a href="{:url('edit?id='.$item['id'])}">编辑</a>
@@ -48,4 +51,25 @@
 		</div>
 	</div>
 </div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-editable.min.js"></script>
+<script type="text/javascript">
+
+
+	function mydomain(linkid){
+		layer.open({
+			type: 2,
+			title: '绑定域名',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['580px', '90%'],
+			content: "{:url('domain')}"+'?linkid='+linkid,
+
+		});
+		return;
+	}
+
+
+</script>
 {/block}

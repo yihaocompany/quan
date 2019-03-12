@@ -1,10 +1,19 @@
-
 <!--footer-->
+<div class="pt-2 text-muted">
+    <h9>友情链接</h9>
+        {notempty name="links"}
+        {volist name="links" id="link"}
+            <a class="nav-link" href="{$link.url}">
+                {$menu.title}
+            </a>
+            {/volist}
+            {else/}
+            {/notempty}
+</div>
 <section class="py-5 bg-dark">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center">
-
                 <p class="pt-2 text-muted">
                     &copy; 2018 {$Webname} &nbsp;&nbsp;技术支持
                     <a href="#">{$Think.YIHAO_TEC}</a> <a href="http://www.thinkphp.cn/" target="_blank" rel="nofollow">基于Thinkphp{$Think.VERSION}</a>

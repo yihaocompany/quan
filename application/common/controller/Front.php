@@ -87,6 +87,23 @@ class Front extends Base{
         //$channel=db('channel')->order('sort desc')->order('id asc')->select();
 
         $this->assign('topmenu',$menurows);
+
+        //友情链接
+
+        $linkwhere=['web.domain'=> $_SERVER['SERVER_NAME'],'web.status'=>1,'link.status'=>1];
+        if(Cache::get( 'link'.$_SERVER['SERVER_NAME'])){
+            $linkrows=Cache::get( 'link'.$_SERVER['SERVER_NAME']);
+        }else{
+            $linklist=db('link')->alias('link')->join('web_link weblink','link.web_id=weblink.id','inner')->join('web_config web','web.id=link.web_id')
+
+                ->field('link.* ')->where($linkwhere)->select();
+            Cache::set( 'link'.$_SERVER['SERVER_NAME'],$linklist);
+            $linkrows=$linklist;
+        }
+
+
+        $this->assign('links',$linkrows);
+
 		$this->view->config($tpl_conf);
 	}
 }

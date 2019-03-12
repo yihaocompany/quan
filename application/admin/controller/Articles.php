@@ -272,19 +272,16 @@ class Articles extends Admin {
         $this->assign('articleid',$articleid);
         $usemap=['article_id'=>$articleid,'status'=>1];
         $total=db('article_category')->where($usemap)->count();
-
-
-
         $this->assign('counter',$total);
         $articleone=db('article')->where(['id'=>$articleid])->find();
         $selectcategory=db('article_category')->where(['article_id'=>$articleid])->select();
 
-
         $this->assign('selectcategory',$selectcategory);
-
         $list = db('category')->order('id desc')->paginate($r, false, array(
             'query'  => $this->request->param()
         ));
+
+
 
         $data = array(
             'article'=>$articleone,
